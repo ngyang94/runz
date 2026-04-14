@@ -1,0 +1,33 @@
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE runs (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    startTime TIMESTAMP NOT NULL,
+    endTime TIMESTAMP NOT NULL,
+    miles DOUBLE CHECK (miles>=0),
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE TABLE coordinate(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    longitude DECIMAL(9,6) NOT NULL,
+    latitude DECIMAL(9,6) NOT NULL,
+    run_id INT NOT NULL,
+    FOREIGN KEY(run_id) REFERENCES runs(id) ON DELETE CASCADE
+);
+CREATE TABLE role(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255) NOT NULL
+);
+CREATE TABLE user_role(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id INT NOT NULL,
+    role_id INT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ,
+    FOREIGN KEY(role_id) REFERENCES role(id),
+    UNIQUE (user_id,role_id)
+);

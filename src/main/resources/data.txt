@@ -1,0 +1,7 @@
+START TRANSACTION;
+
+INSERT INTO users (username,email,password) VALUES("admin","admin@email.com",SHA2("123",256));
+INSERT INTO role (role) VALUES("ADMIN");
+INSERT INTO user_role(user_id,role_id) VALUES((SELECT id FROM users WHERE email="admin@email.com"),(SELECT id FROM role WHERE role="ADMIN"));
+
+COMMIT;
