@@ -16,6 +16,9 @@ import com.ng.runz.service.RunService;
 import com.ng.runz.service.UserService;
 import com.ng.runz.service.impl.RunServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -62,11 +65,11 @@ public class RunController {
         );
 
         runService.createNewRunRecord(runDto,userDto);
-        return ResponseEntity.ok().body(new ApiResponse("success",null));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("success",null));
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getAllRun(){
+    public ResponseEntity<ApiResponse> getAllRun(Pageable pageable){
 
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -78,9 +81,9 @@ public class RunController {
             if (userDetails != null) {
                 user = userService.getUserByUsername(userDetails.getUsername());
             }
-            List<RunDto> runDtoList = null;
+            Page<RunDto> runDtoList = null;
             if (user != null) {
-                runDtoList = runService.getAllByUserId(user.getId());
+                runDtoList = runService.getAllByUserId(user.getId(),pageable);
             }
 
 
