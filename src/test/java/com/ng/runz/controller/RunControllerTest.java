@@ -5,27 +5,19 @@ import com.ng.runz.dto.RoleDto;
 import com.ng.runz.dto.RunDto;
 import com.ng.runz.dto.UserDto;
 import com.ng.runz.mapper.impl.UsersMapper;
-import com.ng.runz.model.Coordinate;
-import com.ng.runz.model.Role;
-import com.ng.runz.model.Runs;
-import com.ng.runz.model.Users;
-import com.ng.runz.repository.RunRepository;
 import com.ng.runz.service.JwtUtilService;
 import com.ng.runz.service.RunService;
 import com.ng.runz.service.UserService;
 import com.ng.runz.service.impl.RunServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MediaType;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.data.domain.*;
-import org.springframework.data.relational.core.sql.When;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.assertj.MockMvcTester;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import tools.jackson.databind.ObjectMapper;
@@ -64,7 +56,7 @@ class RunControllerTest {
 
 
 
-    private List<RunDto> runDtos = new ArrayList<RunDto>();
+    private final List<RunDto> runDtos = new ArrayList<>();
     private UserDto userDto;
 
     @BeforeEach
@@ -74,7 +66,7 @@ class RunControllerTest {
                 "test",
                 "test@email.com",
                 "password",
-                new ArrayList<RoleDto>()
+                new ArrayList<>()
         );
         runDtos.add(new RunDto(
                 LocalDateTime.parse("2026-04-15T12:00:00"),

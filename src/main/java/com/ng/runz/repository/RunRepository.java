@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-
 @Repository
 public interface RunRepository extends JpaRepository<Runs,Long>, PagingAndSortingRepository<Runs,Long> {
     Page<Runs> findAllByUserId(Long userId, Pageable pageable);

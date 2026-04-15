@@ -1,14 +1,9 @@
 package com.ng.runz.controller;
 
-import com.ng.runz.dto.CoordinateDto;
 import com.ng.runz.dto.RunDto;
 import com.ng.runz.dto.UserDto;
 import com.ng.runz.mapper.Mapper;
-import com.ng.runz.mapper.impl.CoordinateMapper;
-import com.ng.runz.mapper.impl.RunMapper;
 import com.ng.runz.mapper.impl.UsersMapper;
-import com.ng.runz.model.Coordinate;
-import com.ng.runz.model.Runs;
 import com.ng.runz.model.Users;
 import com.ng.runz.request.CreateRunRequest;
 import com.ng.runz.response.ApiResponse;
@@ -24,9 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import tools.jackson.databind.ObjectMapper;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("run")

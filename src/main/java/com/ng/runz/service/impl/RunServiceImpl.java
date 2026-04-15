@@ -11,15 +11,12 @@ import com.ng.runz.model.Coordinate;
 import com.ng.runz.model.Runs;
 import com.ng.runz.model.Users;
 import com.ng.runz.repository.RunRepository;
-import com.ng.runz.repository.RunRepositoryH2;
 import com.ng.runz.service.RunService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class RunServiceImpl implements RunService {
